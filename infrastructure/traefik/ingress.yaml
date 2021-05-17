@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik
+spec:
+  entryPoints:                      # [1]
+    - websecure
+  routes:                           # [2]
+  - kind: Rule
+    match: Host(`traefik.joshaconnor.duckdns.org`) # [3]
+    services:
+      - name: api@internal
+        kind: TraefikService
+  - kind: Rule
+    match: Host(`auth.joshaconnor.duckdns.org`) # [3]
+    services:
+      - name: traefik-internal
+        port: 4181

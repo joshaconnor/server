@@ -1,0 +1,20 @@
+namespace: traefik
+resources:
+  - ingress.yaml
+  - middleware.yaml
+  - namespace.yaml
+  - sealed-secret.yaml
+  - service.yaml
+commonLabels:
+  app: traefik
+configMapGenerator:
+  - name: traefik-forward-auth
+    files:
+      - traefik-forward-auth.ini
+helmChartInflationGenerator:
+  - chartName: traefik
+    chartVersion: v9.18.0
+    chartRepoUrl: https://helm.traefik.io/traefik
+    releaseName: traefik
+    releaseNamespace: traefik
+    values: values.yaml

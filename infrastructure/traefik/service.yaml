@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-internal
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: traefik
+  ports:
+    - port: 4181
+      targetPort: auth
+      name: auth
+    - port: 8080
+      targetPort: traefik
+      name: traefik
