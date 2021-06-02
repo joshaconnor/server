@@ -1,0 +1,24 @@
+resources:
+#  - ./backup
+#  - ./bazarr
+#  - ./ddns
+#  - ./errors
+#  - ./filebrowser
+#  - ./homeassistant
+#  - ./homer
+#  - ./jackett
+#  - ./jitsi
+#  - ./kube-prometheus-stack
+#  - ./kubernetes-dashboard
+#  - ./loki-stack
+#  - ./minecraft-hogwarts
+#  - ./minecraft-mattcraft
+#  - ./nas
+#  - ./pihole
+  - ./plex
+#  - ./radarr
+#  - ./router
+#  - ./sonarr
+#  - ./static
+#  - ./tautulli
+#  - ./transmission

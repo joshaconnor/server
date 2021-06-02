@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sonarr
+  namespace: sonarr
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("sonarr.joshaconnor.duckdns.org")
+      kind: Rule
+      services:
+        - name: sonarr
+          port: 8989

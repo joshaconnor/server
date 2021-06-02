@@ -11,7 +11,7 @@ spec:
   hostPath:
     path: /serverdata/server
   claimRef: 
-    namespace: default
+    namespace: server
     name: server
   persistentVolumeReclaimPolicy: Retain
 ---
@@ -28,6 +28,6 @@ spec:
   hostPath:
     path: /serverdata/media
   claimRef:
-    namespace: default
+    namespace: server
     name: media
   persistentVolumeReclaimPolicy: Retain

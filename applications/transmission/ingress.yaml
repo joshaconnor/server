@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: transmission-openvpn
+  namespace: transmission-openvpn
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("transmission.joshaconnor.duckdns.org")
+      kind: Rule
+      services:
+        - name: transmission-openvpn
+          port: 9091

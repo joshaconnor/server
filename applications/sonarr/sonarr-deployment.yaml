@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sonarr
+  name: sonarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: sonarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: sonarr
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Europe/London
+          image: ghcr.io/linuxserver/sonarr
+          name: sonarr
+          ports:
+            - containerPort: 8989
+          # resources:
+          #   limits: 
+          #     cpu: 4
+          #     memory: 4Gi
+          volumeMounts:
+            - mountPath: /config
+              name: server
+            - mountPath: /data/tv
+              name: media
+            - mountPath: /data/downloads
+              name: media
+            - mountPath: /data
+              name: media
+      restartPolicy: Always
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+status: {}

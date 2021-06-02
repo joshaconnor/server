@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: transmission-openvpn
+  name: transmission-openvpn
+spec:
+  # securityContext:
+  #   runAsUser: 1000
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: transmission-openvpn
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: transmission-openvpn
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: LOCAL_NETWORK
+              value: 10.0.0.0/8
+          envFrom:
+            - secretRef:
+                name: transmission
+          image: haugene/transmission-openvpn
+          name: transmission-openvpn
+          ports:
+            - containerPort: 9091
+          resources: {}
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - mountPath: /data
+              name: media
+              subPath: transmision
+      restartPolicy: Always
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+status: {}

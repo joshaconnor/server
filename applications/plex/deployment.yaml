@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: plex
+  replicas: 1 
+  template: 
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+      - name: plex
+        securityContext:
+          privileged: true
+        image: plexinc/pms-docker:latest
+        ports:
+        - containerPort: 32400
+          name: plex
+        - containerPort: 32410
+          protocol: UDP
+          name: bob10
+        - containerPort: 32412
+          protocol: UDP
+          name: bob12
+        - containerPort: 32413
+          protocol: UDP
+          name: bob13
+        - containerPort: 32414
+          protocol: UDP
+          name: bob14
+        - containerPort: 8324
+        env:
+        - name: TZ
+          value: America/New_York
+        - name: ADVERTIZE_IP
+          value: http://192.168.86.206:32400/
+        volumeMounts: 
+        - name: server
+          mountPath: /config
+          subPath: plex
+        - name: media
+          mountPath: /data
+        resources:
+          limits: 
+            cpu: 4
+            memory: 6Gi
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+
