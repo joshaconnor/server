@@ -1,7 +1,7 @@
 # server
 
 ```bash
-kustomize build --enable-helm | kubectl apply -f -
+kustomize build --enable-helm | kubectl apply -f - --prune -l prune=true
 ```
 
 ```bash
