@@ -1,0 +1,8 @@
+namespace: server
+resources:
+  - ingress.yaml
+  - secret.yaml
+  - transmission-openvpn-deployment.yaml
+  - transmission-openvpn-service.yaml
+commonLabels:
+  app: transmission-openvpn

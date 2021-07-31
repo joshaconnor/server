@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # annotations:
+  #   kompose.cmd: kompose convert
+  #   kompose.version: 1.22.0 (955b78124)
+  # creationTimestamp: null
+  # labels:
+  #   io.kompose.service: trilium
+  name: trilium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: trilium
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      # annotations:
+      #   kompose.cmd: kompose convert
+      #   kompose.version: 1.22.0 (955b78124)
+      # creationTimestamp: null
+      labels:
+        io.kompose.service: trilium
+    spec:
+      containers:
+        - env:
+            - name: TRILIUM_DATA_DIR
+              value: /data
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          image: zadam/trilium
+          name: trilium
+          ports:
+            - containerPort: 8080
+          resources: {}
+          volumeMounts:
+            - mountPath: /data
+              name: media
+              subPath: trilium
+      restartPolicy: Always
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+status: {}

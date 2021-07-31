@@ -9,7 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /serverdata/server
+    path: /serverconfig/server
   claimRef: 
     namespace: server
     name: server

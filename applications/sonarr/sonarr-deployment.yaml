@@ -43,10 +43,13 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: server
-            - mountPath: /data/tv
-              name: media
-            - mountPath: /data/downloads
-              name: media
+              subPath: sonarr
+            # - mountPath: /tv
+            #   name: media
+            #   subPath: /"TV Shows"
+            # - mountPath: /downloads
+            #   name: media
+            #   subPath: /transmission/
             - mountPath: /data
               name: media
       restartPolicy: Always

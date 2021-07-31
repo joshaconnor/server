@@ -3,9 +3,32 @@ kind: Middleware
 metadata:
   name: auth
 spec:
+  chain:
+    middlewares:
+      - name: forward-auth
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: forward-auth
+spec:
   forwardAuth:
     address: http://traefik-internal:4181
     trustForwardHeader: true
     authResponseHeaders:
       - X-Auth-User
       - X-Secret
+#      - X-Forwarded-User
+
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: auth
+#   namespace: server
+# spec:
+#   forwardAuth:
+#     address: http://traefik-internal:4181
+#     trustForwardHeader: true
+#     authResponseHeaders:
+#       - X-Auth-User
+#       - X-Secret

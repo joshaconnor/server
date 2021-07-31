@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: minecraft
+  name: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: minecraft
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: minecraft
+    spec:
+      containers:
+        - env:
+            - name: EULA
+              value: "TRUE"
+            - name: TYPE
+              value: FABRIC
+            - name: VERSION
+              value: "1.17"
+          image: itzg/minecraft-server
+          name: minecraft
+          ports:
+            - containerPort: 25565
+              name: minecraft
+          resources: {}
+          volumeMounts:
+            - mountPath: /data
+              subPath: minecraft
+              name: server
+            - mountPath: /mods
+              subPath: mods
+              name: server
+      restartPolicy: Always
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+status: {}

@@ -11,14 +11,15 @@ resources:
 #  - ./kube-prometheus-stack
 #  - ./kubernetes-dashboard
 #  - ./loki-stack
-#  - ./minecraft-hogwarts
-#  - ./minecraft-mattcraft
 #  - ./nas
 #  - ./pihole
   - ./plex
 #  - ./radarr
 #  - ./router
-#  - ./sonarr
+  - ./sonarr
 #  - ./static
 #  - ./tautulli
-#  - ./transmission
+  - ./transmission
+  - ./minecraft
+transformers:
+  - label-transformer.yaml

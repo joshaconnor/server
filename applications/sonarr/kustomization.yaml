@@ -1,0 +1,7 @@
+namespace: server
+resources:
+  - ingress.yaml
+  - sonarr-deployment.yaml
+  - sonarr-service.yaml
+commonLabels:
+  app: sonarr

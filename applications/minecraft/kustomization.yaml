@@ -1,0 +1,6 @@
+namespace: server
+resources:
+  - minecraft-deployment.yaml
+  - minecraft-service.yaml
+commonLabels:
+  app: minecraft

@@ -1,57 +1,42 @@
+# Default values for Traefik
 image:
   name: traefik
+  # defaults to appVersion
   tag: ""
   pullPolicy: IfNotPresent
 
+#
+# Configure the deployment
+#
 deployment:
   enabled: true
+  # Can be either Deployment or DaemonSet
   kind: Deployment
+  # Number of pods of the deployment (only applies when kind == Deployment)
   replicas: 1
+  # Additional deployment annotations (e.g. for jaeger-operator sidecar injection)
   annotations: {}
+  # Additional deployment labels (e.g. for filtering deployment by custom labels)
   labels: {}
+  # Additional pod annotations (e.g. for mesh injection or prometheus scraping)
   podAnnotations: {}
+  # Additional Pod labels (e.g. for filtering Pod by custom labels)
   podLabels: {}
-  additionalContainers:
-    - name: traefik-forward-auth
-      image: thomseddon/traefik-forward-auth:2.2.0
-      ports:
-        - name: auth
-          containerPort: 4181
-      env:
-        - name: CONFIG
-          value: /config
-        - name: COOKIE_DOMAIN
-          value: joshaconnor.duckdns.org
-        - name: AUTH_HOST
-          value: auth.joshaconnor.duckdns.org
-        - name: WHITELIST
-          value: joshaconnor@gmail.com
-        - name: SECRET
-          valueFrom:
-            secretKeyRef:
-              name: traefik
-              key: SECRET
-        - name: PROVIDERS_GOOGLE_CLIENT_ID
-          valueFrom:
-            secretKeyRef:
-              name: traefik
-              key: PROVIDERS_GOOGLE_CLIENT_ID
-        - name: PROVIDERS_GOOGLE_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: traefik
-              key: PROVIDERS_GOOGLE_CLIENT_SECRET
-      envFrom:
-        - secretRef:
-            name: traefik
-      volumeMounts:
-        - name: traefik-forward-auth
-          mountPath: /config
-          subPath: traefik-forward-auth.ini
-  additionalVolumes:
-    - name: traefik-forward-auth
-      configMap:
-        name: traefik-forward-auth
+  # Additional containers (e.g. for metric offloading sidecars)
+  additionalContainers: []
+    # https://docs.datadoghq.com/developers/dogstatsd/unix_socket/?tab=host
+    # - name: socat-proxy
+    # image: alpine/socat:1.0.5
+    # args: ["-s", "-u", "udp-recv:8125", "unix-sendto:/socket/socket"]
+    # volumeMounts:
+    #   - name: dsdsocket
+    #     mountPath: /socket
+  # Additional volumes available for use with initContainers and additionalContainers
+  additionalVolumes: []
+    # - name: dsdsocket
+    #   hostPath:
+    #     path: /var/run/statsd-exporter
+  # Additional initContainers (e.g. for setting file permission as shown below)
   initContainers: []
     # The "volume-permissions" init container is required if you run into permission issues.
     # Related issue: https://github.com/traefik/traefik/issues/6972
@@ -101,7 +86,7 @@ experimental:
 # Create an IngressRoute for the dashboard
 ingressRoute:
   dashboard:
-    enabled: false
+    enabled: true
     # Additional ingressRoute annotations (e.g. for kubernetes.io/ingress.class)
     annotations: {}
     # Additional ingressRoute labels (e.g. for filtering IngressRoute by custom labels)
@@ -115,22 +100,22 @@ rollingUpdate:
 #
 # Configure providers
 #
-# providers:
-#   kubernetesCRD:
-#     enabled: true
-#     namespaces: []
-#       # - "default"
-#   kubernetesIngress:
-#     enabled: true
-#     # labelSelector: environment=production,method=traefik
-#     namespaces: []
-#       # - "default"
-#     # IP used for Kubernetes Ingress endpoints
-#     publishedService:
-#       enabled: false
-#       # Published Kubernetes Service to copy status from. Format: namespace/servicename
-#       # By default this Traefik service
-#       # pathOverride: ""
+providers:
+  kubernetesCRD:
+    enabled: true
+    namespaces: []
+      # - "default"
+  kubernetesIngress:
+    enabled: true
+    # labelSelector: environment=production,method=traefik
+    namespaces: []
+      # - "default"
+    # IP used for Kubernetes Ingress endpoints
+    publishedService:
+      enabled: false
+      # Published Kubernetes Service to copy status from. Format: namespace/servicename
+      # By default this Traefik service
+      # pathOverride: ""
 
 #
 # Add volumes to the traefik pod. The volume name will be passed to tpl.
@@ -166,7 +151,7 @@ logs:
     level: ERROR
   access:
     # To enable access logs
-    enabled: true
+    enabled: false
     # By default, logs are written using the Common Log Format (CLF).
     # To write logs in JSON, use json in the format option.
     # If the given format is unsupported, the default (CLF) is used instead.
@@ -198,19 +183,15 @@ logs:
 
 globalArguments:
   - "--global.checknewversion"
+  - "--global.sendanonymoususage"
 
 #
 # Configure Traefik static configuration
 # Additional arguments to be passed at Traefik's binary
 # All available options available on https://docs.traefik.io/reference/static-configuration/cli/
 ## Use curly braces to pass values: `helm install --set="additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}"`
-additionalArguments: 
-  - --certificatesresolvers.letsencrypt.acme.email=joshaconnor@gmail.com
-  - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=duckdns
-  - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
-  - --entrypoints.websecure.http.middlewares=server-auth@kubernetescrd
-  - --api.insecure
-#  - --providers.kubernetesingress.ingressclass=traefik-internal
+additionalArguments: []
+#  - "--providers.kubernetesingress.ingressclass=traefik-internal"
 #  - "--log.level=DEBUG"
 
 # Environment variables to be passed to Traefik's binary
@@ -228,9 +209,7 @@ env: []
 #       name: secret-name
 #       key: secret-key
 
-envFrom: 
-  - secretRef:
-      name: traefik
+envFrom: []
 # - configMapRef:
 #     name: config-map-name
 # - secretRef:
@@ -241,7 +220,7 @@ ports:
   # The name of this one can't be changed as it is used for the readiness and
   # liveness probes, but you can adjust its config to your liking
   traefik:
-    port: 8080
+    port: 9000
     # Use hostPort if set.
     # hostPort: 9000
     #
@@ -261,15 +240,16 @@ ports:
     # You SHOULD NOT expose the traefik port on production deployments.
     # If you want to access it from outside of your cluster,
     # use `kubectl port-forward` or create a secure ingress
-    expose: true
-    nodePort: 8080
+    expose: false
+    # The exposed port for this service
+    exposedPort: 9000
     # The port protocol (TCP/UDP)
     protocol: TCP
   web:
     port: 8000
     # hostPort: 8000
     expose: true
-    nodePort: 80
+    exposedPort: 80
     # The port protocol (TCP/UDP)
     protocol: TCP
     # Use nodeport if set. This is useful if you have configured Traefik in a
@@ -278,26 +258,23 @@ ports:
     # Port Redirections
     # Added in 2.2, you can make permanent redirects via entrypoints.
     # https://docs.traefik.io/routing/entrypoints/#redirection
-    redirectTo: websecure
+    # redirectTo: websecure
   websecure:
     port: 8443
     # hostPort: 8443
     expose: true
-    nodePort: 443
+    exposedPort: 443
     # The port protocol (TCP/UDP)
     protocol: TCP
     # nodePort: 32443
     # Set TLS at the entrypoint
     # https://doc.traefik.io/traefik/routing/entrypoints/#tls
     tls:
-      enabled: true
+      enabled: false
       # this is the name of a TLSOption definition
       options: ""
-      certResolver: "letsencrypt"
-      domains: 
-        - main: joshaconnor.duckdns.org
-          sans: 
-            - "*.joshaconnor.duckdns.org"
+      certResolver: ""
+      domains: []
       # - main: example.com
       #   sans:
       #     - foo.example.com
@@ -320,7 +297,7 @@ tlsOptions: {}
 # from.
 service:
   enabled: true
-  type: NodePort
+  type: LoadBalancer
   # Additional annotations (e.g. for cloud provider specific config)
   annotations: {}
   # Additional service labels (e.g. for filtering Service by custom labels)
@@ -360,14 +337,15 @@ autoscaling:
 # - "--certificatesresolvers.le.acme.storage=/data/acme.json"
 # It will persist TLS certificates.
 persistence:
-  enabled: true
-  existingClaim: "server"
+  enabled: false
+  name: data
+#  existingClaim: ""
   accessMode: ReadWriteOnce
   size: 128Mi
   # storageClass: ""
   path: /data
   annotations: {}
-  subPath: "traefik" # only mount a subpath of the Volume into the pod
+  # subPath: "" # only mount a subpath of the Volume into the pod
 
 # If hostNetwork is true, runs traefik in the host network namespace
 # To prevent unschedulabel pods due to port collisions, if hostNetwork=true

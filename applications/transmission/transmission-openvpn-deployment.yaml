@@ -5,24 +5,24 @@ metadata:
     kompose.cmd: kompose convert
     kompose.version: 1.22.0 (955b78124)
   creationTimestamp: null
-  labels:
-    io.kompose.service: transmission-openvpn
+  # labels:
+  #   io.kompose.service: transmission-openvpn
   name: transmission-openvpn
 spec:
   # securityContext:
   #   runAsUser: 1000
   replicas: 1
-  selector:
-    matchLabels:
-      io.kompose.service: transmission-openvpn
+  # selector:
+  #   matchLabels:
+  #     io.kompose.service: transmission-openvpn
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.22.0 (955b78124)
-      creationTimestamp: null
+      # annotations:
+      #   kompose.cmd: kompose convert
+      #   kompose.version: 1.22.0 (955b78124)
+      # creationTimestamp: null
       labels:
         io.kompose.service: transmission-openvpn
     spec:
