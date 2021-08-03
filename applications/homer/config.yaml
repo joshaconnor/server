@@ -15,6 +15,9 @@ links:
   - name: GitHub
     icon: fab fa-github
     url: https://github.com/joshuaconnor/
+  - name: "Work Links"
+    icon: "fas fa-file-alt"
+    url: "#additionnal-page" 
 
 services:
   - name: Media
@@ -44,6 +47,10 @@ services:
         subtitle: BitTorrent client
         logo: assets/logos/transmission.png
         url: https://transmission.joshaconnor.duckdns.org
+      - name: Trilium
+        subtitle: Knowledge Repository
+        logo: assets/logos/trilium.png
+        url: https://trilium.joshaconnor.duckdns.org
       # - name: Tautulli
       #   subtitle: Plex statistics
       #   logo: assets/logos/tautulli.png

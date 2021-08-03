@@ -5,7 +5,8 @@ resources:
 #  - ./errors
 #  - ./filebrowser
 #  - ./homeassistant
-#  - ./homer
+  - ./homer
+  - ./minecraftOneBlock
 #  - ./jackett
 #  - ./jitsi
 #  - ./kube-prometheus-stack
@@ -19,6 +20,7 @@ resources:
   - ./sonarr
 #  - ./static
 #  - ./tautulli
+  - ./trilium
   - ./transmission
   - ./minecraft
 transformers:
