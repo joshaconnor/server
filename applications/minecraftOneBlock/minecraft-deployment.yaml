@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mc-oneblock
+  name: mc-oneblock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mc-oneblock
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mc-oneblock
+    spec:
+      containers:
+        - env:
+            - name: EULA
+              value: "TRUE"
+            # - name: TYPE
+            #   value: FABRIC
+            - name: VERSION
+              value: "1.16.4"
+          image: itzg/minecraft-server
+          name: mc-oneblock
+          ports:
+            - containerPort: 25565
+              name: mc-oneblock
+          resources: {}
+          volumeMounts:
+            - mountPath: /data
+              subPath: minecraftOneblock
+              name: server
+            # - mountPath: /mods
+            #   subPath: mods
+            #   name: server
+      restartPolicy: Always
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+status: {}
