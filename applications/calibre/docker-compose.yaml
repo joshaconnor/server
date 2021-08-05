@@ -1,5 +1,5 @@
 ---
-version: "2.1"
+version: "2"
 services:
   calibre-web:
     image: ghcr.io/linuxserver/calibre-web

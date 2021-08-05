@@ -7,7 +7,7 @@ header: true
 footer: false
 
 columns: "3"
-connectivityCheck: true
+connectivityCheck: false
 
 theme: default
 
@@ -17,7 +17,7 @@ links:
     url: https://github.com/joshuaconnor/
   - name: "Work Links"
     icon: "fas fa-file-alt"
-    url: "#additionnal-page" 
+    url: "#additional-page" 
 
 services:
   - name: Media

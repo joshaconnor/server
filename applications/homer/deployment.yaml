@@ -6,16 +6,6 @@ spec:
   replicas: 1
   template:
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - topologyKey: "kubernetes.io/hostname"
-              labelSelector:
-                matchExpressions:
-                  - key: "app"
-                    operator: In
-                    values:
-                      - homer
       containers:
         - name: homer
           image: b4bz/homer:21.07.1
@@ -33,6 +23,9 @@ spec:
             - name: server
               mountPath: /www/assets
               subPath: homer
+            - name: homer
+              mountPath: /www/assets/additional-page.yml
+              subPath: additionnalPage.yaml
             - name: homer
               mountPath: /www/assets/config.yml
               subPath: config.yaml

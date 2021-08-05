@@ -18,3 +18,7 @@ git add .
 git commit
 git push
 ```
+
+```bash
+kubectl -n service rollout restart deployment <name>
+```

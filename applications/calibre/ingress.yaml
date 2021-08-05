@@ -1,14 +1,13 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: sonarr
-  # namespace: sonarr
+  name: calibre-web
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host("sonarr.joshaconnor.duckdns.org")
+    - match: Host("calibre.joshaconnor.duckdns.org")
       kind: Rule
       services:
-        - name: sonarr
-          port: 8989
+        - name: calibre-web
+          port: 8083
