@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: calibre
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("calibre-server.joshaconnor.duckdns.org")
+      kind: Rule
+      services:
+        - name: calibre
+          port: 8080
+        # - name: calibre
+        #   port: 8081

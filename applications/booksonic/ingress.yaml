@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: booksonic
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("audiobooks.joshaconnor.duckdns.org")
+      kind: Rule
+      services:
+        - name: booksonic
+          port: 4040

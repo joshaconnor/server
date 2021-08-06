@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: calibre
+  name: calibre
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calibre
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: calibre
+    spec:
+      containers:
+        - env:
+            # - name: CLI_ARGS
+            # - name: PASSWORD
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Europe/London
+          image: ghcr.io/linuxserver/calibre
+          name: calibre
+          ports:
+            - containerPort: 8080
+            - containerPort: 8081
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: server
+              subPath: calibre-server
+            - mountPath: /config/Calibre Library
+              name: media
+              subPath: calibre
+      restartPolicy: Always
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+        - name: media
+          persistentVolumeClaim:
+            claimName: media

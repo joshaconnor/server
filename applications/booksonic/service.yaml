@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    io.kompose.service: booksonic
+    app: booksonic
   name: booksonic
 spec:
   ports:
@@ -10,6 +10,5 @@ spec:
       port: 4040
       targetPort: 4040
   selector:
-    io.kompose.service: booksonic
-status:
-  loadBalancer: {}
+    app: booksonic
+

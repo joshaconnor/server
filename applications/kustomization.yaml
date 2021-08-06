@@ -1,12 +1,19 @@
 resources:
+  - ./calibre-web
+  - ./calibre
+  - ./homer
+  - ./minecraftOneBlock
+  - ./plex
+  - ./sonarr
+  - ./trilium
+  - ./transmission
+  - ./minecraft
 #  - ./backup
 #  - ./bazarr
 #  - ./ddns
 #  - ./errors
 #  - ./filebrowser
 #  - ./homeassistant
-  - ./homer
-  - ./minecraftOneBlock
 #  - ./jackett
 #  - ./jitsi
 #  - ./kube-prometheus-stack
@@ -14,14 +21,9 @@ resources:
 #  - ./loki-stack
 #  - ./nas
 #  - ./pihole
-  - ./plex
-#  - ./radarr
-#  - ./router
-  - ./sonarr
 #  - ./static
 #  - ./tautulli
-  - ./trilium
-  - ./transmission
-  - ./minecraft
+#  - ./radarr
+#  - ./router
 transformers:
   - label-transformer.yaml

@@ -2,23 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: booksonic
+    app: booksonic
   name: booksonic
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: booksonic
+      app: booksonic
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose -f docker-compose.yaml convert
-        kompose.version: 1.22.0 (955b78124)
-      creationTimestamp: null
       labels:
-        io.kompose.service: booksonic
+        app: booksonic
     spec:
       containers:
         - env:
@@ -37,25 +33,22 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /config
-              name: booksonic-claim0
+              name: server
+              subPath: booksonic
             - mountPath: /audiobooks
-              name: booksonic-claim1
+              name: media
+              subPath: booksonic
             - mountPath: /podcasts
-              name: booksonic-claim2
+              name: media
+              subPath: booksonic
             - mountPath: /othermedia
-              name: booksonic-claim3
+              name: media
+              subPath: booksonic
       restartPolicy: Always
       volumes:
-        - name: booksonic-claim0
+        - name: server
           persistentVolumeClaim:
-            claimName: booksonic-claim0
-        - name: booksonic-claim1
+            claimName: server
+        - name: media
           persistentVolumeClaim:
-            claimName: booksonic-claim1
-        - name: booksonic-claim2
-          persistentVolumeClaim:
-            claimName: booksonic-claim2
-        - name: booksonic-claim3
-          persistentVolumeClaim:
-            claimName: booksonic-claim3
-status: {}
+            claimName: media
