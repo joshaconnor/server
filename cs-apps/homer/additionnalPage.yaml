@@ -1,0 +1,107 @@
+---
+# Additionnal page configuration
+
+# Additionnal configurations are loaded using its file name, minus the extension, as an anchor (https://<mydashboad>#<config>). 
+# `config.yml` is still used as a base configuration, and all values here will overwrite it, so you don't have to re-defined everything
+
+title: J. Connor
+subtitle: "The Fletcher Academy"
+
+
+colors:
+  light:
+    highlight-primary: "#78797D"
+    highlight-secondary: "#77202D"
+    highlight-hover: "#AA5360"
+    background: "#CFCFCF"
+    card-background: "#E8E8E8"
+    text: "#1D1D1D"
+    text-header: "#E8E8E8"
+    text-title: "#303030"
+    text-subtitle: "#424242"
+    card-shadow: rgba(0, 0, 0, 0.3)
+    link-hover: "#363636"
+    # background-image: "assets/your/light/bg.png"
+  dark:
+    highlight-primary: "#5E0714"
+    highlight-secondary: "#77202D"
+    highlight-hover: "#929397"
+    background: "#78797D"
+    card-background: "#929397"
+    text: "#202020"
+    text-header: "#ffffff"
+    text-title: "#202020"
+    text-subtitle: "#424242"
+    card-shadow: rgba(0, 0, 0, 0.5)
+    link-hover: "#363636"
+    # background-image: "assets/your/dark/bg.png"
+
+# This overwrites message config. Setting it to empty to remove message from this page and keep it only in the main one:
+message: ~
+
+# as we want to include a differente link here (so we can get back to home page), we need to replicate all links or they will be revome when overwriting the links field:
+links:
+  - name: "Personal"
+    icon: "fas fa-home"
+    url: "#"
+
+
+columns: "3"
+connectivityCheck: false
+
+
+services:
+  - name: "Daily Apps"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Gmail"
+        logo: "assets/logos/gmail.png"
+        subtitle: "eMail"
+        tag: "app"
+        url: "https://mail.google.com/mail/u/0/#inbox"
+        target: "_blank"
+      - name: "Google Drive"
+        logo: "assets/logos/drive.png"
+        subtitle: "Cloud Storage"
+        tag: "app"
+        url: "https://drive.google.com/drive/my-drive"
+        target: "_blank"
+      - name: "Google Classroom"
+        logo: "assets/logos/classroom.png"
+        subtitle: "Homework Management"
+        tag: "app"
+        url: "https://classroom.google.com/h"
+        target: "_blank"
+      - name: "Go Guardian"
+        logo: "assets/logos/goguardian.png"
+        subtitle: "Chromebook Activity Management"
+        tag: "app"
+        url: "https://teacher.goguardian.com/classrooms/active"
+        target: "_blank"
+  - name: "Learning Applications"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Gmail"
+        logo: "assets/logos/gmail.png"
+        subtitle: "eMail"
+        tag: "app"
+        url: "https://mail.google.com/mail/u/0/#inbox"
+        target: "_blank"
+      - name: "Google Drive"
+        logo: "assets/logos/drive.png"
+        subtitle: "Cloud Storage"
+        tag: "app"
+        url: "https://drive.google.com/drive/my-drive"
+        target: "_blank"
+      - name: "Google Classroom"
+        logo: "assets/logos/classroom.png"
+        subtitle: "Homework Management"
+        tag: "app"
+        url: "https://classroom.google.com/h"
+        target: "_blank"
+      - name: "Go Guardian"
+        logo: "assets/logos/goguardian.png"
+        subtitle: "Chromebook Activity Management"
+        tag: "app"
+        url: "https://teacher.goguardian.com/classrooms/active"
+        target: "_blank"

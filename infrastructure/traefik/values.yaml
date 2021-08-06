@@ -298,6 +298,9 @@ ports:
         - main: joshaconnor.duckdns.org
           sans: 
             - "*.joshaconnor.duckdns.org"
+        - main: connor-science.duckdns.org
+          sans: 
+            - "*.connor-science.duckdns.org"
       # - main: example.com
       #   sans:
       #     - foo.example.com

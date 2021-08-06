@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cs-homer
+spec:
+  type: ClusterIP
+  ports:
+    - name: cs-homer
+      port: 8080
+      targetPort: cs-homer
+

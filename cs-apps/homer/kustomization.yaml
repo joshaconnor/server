@@ -1,0 +1,12 @@
+namespace: server
+resources:
+  - deployment.yaml
+  - ingress.yaml
+  - service.yaml
+commonLabels:
+  app: cs-homer
+configMapGenerator:
+  - name: cs-homer
+    files:
+      - config.yaml
+      - additionnalPage.yaml

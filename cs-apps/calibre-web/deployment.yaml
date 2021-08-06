@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cs-calibre-web
+  name: cs-calibre-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cs-calibre-web
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Europe/London
+          image: ghcr.io/linuxserver/calibre-web
+          name: cs-calibre-web
+          ports:
+            - containerPort: 8083
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: server
+              subPath: cs/calibre
+            - mountPath: /books
+              name: media
+              subPath: cs/calibre
+      restartPolicy: Always
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+        - name: media
+          persistentVolumeClaim:
+            claimName: media

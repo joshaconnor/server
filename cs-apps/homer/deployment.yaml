@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cs-homer
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: cs-homer
+          image: b4bz/homer:21.07.1
+          ports:
+            - name: cs-homer
+              containerPort: 8080
+          env:
+            - name: TZ
+              value: America/New_York
+            - name: UID
+              value: "1000"
+            - name: GID
+              value: "1000"
+          volumeMounts:
+            - name: server
+              mountPath: /www/assets
+              subPath: cs/homer
+            - name: cs-homer
+              mountPath: /www/assets/additional-page.yml
+              subPath: additionnalPage.yaml
+            - name: cs-homer
+              mountPath: /www/assets/config.yml
+              subPath: config.yaml
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+        - name: cs-homer
+          configMap:
+            name: cs-homer
