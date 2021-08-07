@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: celery-beat
+  name: celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: celery-beat
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: celery-beat
+    spec:
+      containers:
+        - env:
+            - name: ENABLE_CELERY_LONG
+              value: "no"
+            - name: ENABLE_CELERY_SHORT
+              value: "no"
+            - name: ENABLE_MIGRATIONS
+              value: "no"
+            - name: ENABLE_NGINX
+              value: "no"
+            - name: ENABLE_UWSGI
+              value: "no"
+          image: mediacms/mediacms:latest
+          name: celery-beat
+          resources: {}
+          volumeMounts:
+            - mountPath: /home/mediacms.io/mediacms/
+              name: celery-beat-claim0
+      restartPolicy: Always
+      volumes:
+        - name: celery-beat-claim0
+          persistentVolumeClaim:
+            claimName: celery-beat-claim0
+status: {}

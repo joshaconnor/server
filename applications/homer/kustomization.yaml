@@ -9,4 +9,4 @@ configMapGenerator:
   - name: homer
     files:
       - config.yaml
-      - additionnalPage.yaml
+      # - additionnalPage.yaml

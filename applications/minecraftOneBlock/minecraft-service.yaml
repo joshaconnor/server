@@ -8,5 +8,6 @@ spec:
     app: mc-oneblock
   ports:
     - port: 25566
-      targetPort: mc-oneblock
+      targetPort: 25565
       name: mc-oneblock
+      nodePort: 25566

@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: migrations
+  name: migrations
+spec:
+  containers:
+    - args:
+        - ./deploy/docker/prestart.sh
+      env:
+        - name: ADMIN_EMAIL
+          value: admin@localhost
+        - name: ADMIN_USER
+          value: admin
+        - name: ENABLE_CELERY_BEAT
+          value: "no"
+        - name: ENABLE_CELERY_LONG
+          value: "no"
+        - name: ENABLE_CELERY_SHORT
+          value: "no"
+        - name: ENABLE_NGINX
+          value: "no"
+        - name: ENABLE_UWSGI
+          value: "no"
+      image: mediacms/mediacms:latest
+      name: migrations
+      resources: {}
+      volumeMounts:
+        - mountPath: /home/mediacms.io/mediacms/
+          name: migrations-claim0
+  restartPolicy: OnFailure
+  volumes:
+    - name: migrations-claim0
+      persistentVolumeClaim:
+        claimName: migrations-claim0
+status: {}

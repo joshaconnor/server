@@ -17,7 +17,7 @@ links:
     url: https://github.com/joshuaconnor/
   - name: "Work Links"
     icon: "fas fa-file-alt"
-    url: "#additional-page" 
+    url: "https://connor-science.duckdns.org" 
 
 services:
   - name: Media
@@ -27,6 +27,10 @@ services:
         subtitle: Media server
         logo: assets/logos/plex.png
         url: https://plex.joshaconnor.duckdns.org
+      - name: Calibre
+        subtitle: eBook management server
+        logo: assets/logos/calibre.png
+        url: https://calibre.joshaconnor.duckdns.org
       # - name: Radarr
       #   subtitle: Movies
       #   logo: assets/logos/radarr.png

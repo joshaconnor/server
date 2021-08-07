@@ -23,9 +23,9 @@ spec:
             - name: server
               mountPath: /www/assets
               subPath: homer
-            - name: homer
-              mountPath: /www/assets/additional-page.yml
-              subPath: additionnalPage.yaml
+            # - name: homer
+            #   mountPath: /www/assets/additional-page.yml
+            #   subPath: additionnalPage.yaml
             - name: homer
               mountPath: /www/assets/config.yml
               subPath: config.yaml
