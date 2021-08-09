@@ -8,6 +8,8 @@ resources:
   - ./trilium
   - ./transmission
   - ./minecraft
+  - ./jackett
+  - ./radarr
 #  - ./backup
 #  - ./bazarr
 #  - ./ddns
@@ -23,7 +25,6 @@ resources:
 #  - ./pihole
 #  - ./static
 #  - ./tautulli
-#  - ./radarr
 #  - ./router
 transformers:
   - label-transformer.yaml

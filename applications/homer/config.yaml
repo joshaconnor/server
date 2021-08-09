@@ -43,10 +43,10 @@ services:
       #   subtitle: Subtitles
       #   logo: assets/logos/bazarr.png
       # #   url: https://bazarr.joshaconnor.duckdns.org
-      # - name: Jackett
-      #   subtitle: Indexer aggregator
-      #   logo: assets/logos/jackett.png
-      #   url: https://jackett.joshaconnor.duckdns.org
+      - name: Jackett
+        subtitle: Indexer aggregator
+        logo: assets/logos/jackett.png
+        url: https://jackett.joshaconnor.duckdns.org
       - name: Transmission
         subtitle: BitTorrent client
         logo: assets/logos/transmission.png

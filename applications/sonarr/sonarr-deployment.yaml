@@ -44,12 +44,6 @@ spec:
             - mountPath: /config
               name: server
               subPath: sonarr
-            # - mountPath: /tv
-            #   name: media
-            #   subPath: /"TV Shows"
-            # - mountPath: /downloads
-            #   name: media
-            #   subPath: /transmission/
             - mountPath: /data
               name: media
       restartPolicy: Always

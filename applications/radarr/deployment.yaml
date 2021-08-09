@@ -1,0 +1,38 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: radarr
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: radarr
+          image: ghcr.io/linuxserver/radarr:version-3.2.2.5080
+          ports:
+            - name: radarr
+              containerPort: 7878
+          env:
+            - name: TZ
+              value: America/New_York
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+          volumeMounts:
+            - name: server
+              mountPath: /config
+              subPath: radarr
+            - name: media
+              mountPath: /movies
+              subPath: Movies
+            - name: media
+              mountPath: /data
+              subPath: transmision
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
