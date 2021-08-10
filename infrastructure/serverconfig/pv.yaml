@@ -31,3 +31,20 @@ spec:
     namespace: server
     name: media
   persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: code
+spec:
+  storageClassName: microk8s-hostpath
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /home/josh/repos
+  claimRef: 
+    namespace: server
+    name: code
+  persistentVolumeReclaimPolicy: Retain

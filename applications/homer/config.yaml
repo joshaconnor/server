@@ -20,6 +20,20 @@ links:
     url: "https://connor-science.duckdns.org" 
 
 services:
+  - name: Favorites
+    icon: fas fa-compact-disc
+    items:
+      - name: Gmail
+        subtitle: eMail Service
+        logo: assets/logos/gmail.png
+        url: https://mail.google.com/mail/u/0/#inbox
+      - name: Calendar
+        subtitle: Digital Calendar
+        logo: assets/logos/calendar.png
+        url: https://calendar.google.com/calendar/u/0/r/week
+
+
+
   - name: Media
     icon: fas fa-compact-disc
     items:
@@ -31,34 +45,10 @@ services:
         subtitle: eBook management server
         logo: assets/logos/calibre.png
         url: https://calibre.joshaconnor.duckdns.org
-      # - name: Radarr
-      #   subtitle: Movies
-      #   logo: assets/logos/radarr.png
-      #   url: https://radarr.joshaconnor.duckdns.org
-      - name: Sonarr
-        subtitle: TV shows
-        logo: assets/logos/sonarr.png
-        url: https://sonarr.joshaconnor.duckdns.org
-      # - name: Bazarr
-      #   subtitle: Subtitles
-      #   logo: assets/logos/bazarr.png
-      # #   url: https://bazarr.joshaconnor.duckdns.org
-      - name: Jackett
-        subtitle: Indexer aggregator
-        logo: assets/logos/jackett.png
-        url: https://jackett.joshaconnor.duckdns.org
-      - name: Transmission
-        subtitle: BitTorrent client
-        logo: assets/logos/transmission.png
-        url: https://transmission.joshaconnor.duckdns.org
       - name: Trilium
         subtitle: Knowledge Repository
         logo: assets/logos/trilium.png
         url: https://trilium.joshaconnor.duckdns.org
-      # - name: Tautulli
-      #   subtitle: Plex statistics
-      #   logo: assets/logos/tautulli.png
-      #   url: https://tautulli.joshaconnor.duckdns.org
 
   - name: Management
     icon: fas fa-tasks
@@ -79,22 +69,10 @@ services:
       #   subtitle: DNS sinkhole
       #   logo: assets/logos/pihole.png
       #   url: https://pihole.joshaconnor.duckdns.org
-      # - name: Synology DSM
-      #   subtitle: NAS web UI
-      #   logo: assets/logos/nas.png
-      #   url: https://nas.joshaconnor.duckdns.org
-      - name: OpenMediaVault
-        subtitle: OMV web UI
-        logo: assets/logos/omv.png
-        url: https://omv.joshaconnor.duckdns.org
-      # - name: Router
-      #   subtitle: Router web UI
-      #   logo: assets/logos/router.png
-      #   url: https://router.joshaconnor.duckdns.org
-
-  - name: More
-    icon: fas fa-folder-open
-    items:
+      # - name: OpenMediaVault
+      #   subtitle: OMV web UI
+      #   logo: assets/logos/omv.png
+      #   url: https://omv.joshaconnor.duckdns.org
       # - name: Home Assistant
       #   subtitle: Home automation
       #   logo: assets/logos/homeassistant.png
@@ -107,11 +85,51 @@ services:
       #   subtitle: Server metrics
       #   logo: assets/logos/prometheus.png
       #   url: https://prometheus.joshaconnor.duckdns.org
-      # - name: File Browser
-      #   subtitle: File browser
-      #   logo: assets/logos/filebrowser.png
-      #   url: https://files.joshaconnor.duckdns.org
+      - name: File Browser
+        subtitle: File browser
+        logo: assets/logos/filebrowser.png
+        url: https://files.joshaconnor.duckdns.org
       # - name: Jitsi
       #   subtitle: Video conferencing
       #   logo: assets/logos/jitsi.png
       #   url: https://jitsi.joshaconnor.duckdns.org
+
+  - name: Media Gathering
+    icon: fas fa-folder-open
+    items:
+      - name: Radarr
+        subtitle: Movies
+        logo: assets/logos/radarr.png
+        url: https://radarr.joshaconnor.duckdns.org
+      - name: Sonarr
+        subtitle: TV shows
+        logo: assets/logos/sonarr.png
+        url: https://sonarr.joshaconnor.duckdns.org
+      # - name: Bazarr
+      #   subtitle: Subtitles
+      #   logo: assets/logos/bazarr.png
+      # #   url: https://bazarr.joshaconnor.duckdns.org
+      - name: Jackett
+        subtitle: Indexer aggregator
+        logo: assets/logos/jackett.png
+        url: https://jackett.joshaconnor.duckdns.org
+      - name: Transmission
+        subtitle: BitTorrent client
+        logo: assets/logos/transmission.png
+        url: https://transmission.joshaconnor.duckdns.org
+
+  - name: D&D
+    icon: fas fa-dice-d20
+    items:
+      - name: 5e Tools
+        subtitle: 5e Reference Tool
+        logo: assets/logos/5e.png
+        url: https://5e.tools/index.html
+      - name: Homebrewry
+        subtitle: 5e Document Generator
+        logo: assets/logos/homebrewry.png
+        url: https://homebrewery.naturalcrit.com/user/joshaconnor
+      - name: Players Guide
+        subtitle: Player Information
+        logo: assets/logos/eyospg.png
+        url: https://sites.google.com/view/eyosplayerguide/home
