@@ -13,7 +13,7 @@ spec:
         - name: homeassistant
           image: homeassistant/home-assistant:2021.7.4
           ports:
-            - name: http
+            - name: homeassistant
               containerPort: 8123
           env:
             - name: TZ

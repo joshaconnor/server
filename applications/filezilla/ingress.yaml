@@ -1,13 +1,13 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: code-server
+  name: filezilla
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host("code.joshaconnor.duckdns.org")
+    - match: Host("filezilla.joshaconnor.duckdns.org")
       kind: Rule
       services:
-        - name: code-server
-          port: 8443
+        - name: filezilla
+          port: 3000

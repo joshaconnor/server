@@ -1,15 +1,17 @@
 resources:
-  - ./calibre-web
   - ./calibre
+  - ./calibre-web
+  - ./code-server
+  - ./filebrowser
   - ./homer
+  - ./jackett
+  - ./minecraft
   - ./minecraftOneBlock
   - ./plex
-  - ./sonarr
-  - ./trilium
-  - ./transmission
-  - ./minecraft
-  - ./jackett
   - ./radarr
+  - ./sonarr
+  - ./transmission
+  - ./trilium
 #  - ./backup
 #  - ./bazarr
 #  - ./ddns

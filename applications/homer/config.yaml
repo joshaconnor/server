@@ -89,10 +89,10 @@ services:
         subtitle: File browser
         logo: assets/logos/filebrowser.png
         url: https://files.joshaconnor.duckdns.org
-      # - name: Jitsi
-      #   subtitle: Video conferencing
-      #   logo: assets/logos/jitsi.png
-      #   url: https://jitsi.joshaconnor.duckdns.org
+      - name: Code Server
+        subtitle: Code Editing
+        logo: assets/logos/vscode.png
+        url: https://code.joshaconnor.duckdns.org
 
   - name: Media Gathering
     icon: fas fa-folder-open

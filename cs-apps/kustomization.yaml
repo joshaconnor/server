@@ -1,0 +1,5 @@
+resources:
+  - ./calibre-web
+  - ./homer
+transformers:
+  - label-transformer.yaml
