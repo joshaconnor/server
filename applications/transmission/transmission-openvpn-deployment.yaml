@@ -28,6 +28,14 @@ spec:
     spec:
       containers:
         - env:
+            - name: OPENVPN_PROVIDER
+              value: MULLVAD
+            - name: OPENVPN_CONFIG
+              value: us_rag
+            - name: OPENVPN_OPTS
+              value: --mute-replay-warnings
+            - name: TRANSMISSION_PEER_PORT
+              value: "56002"
             - name: PGID
               value: "1000"
             - name: PUID
@@ -37,7 +45,7 @@ spec:
           envFrom:
             - secretRef:
                 name: transmission
-          image: haugene/transmission-openvpn
+          image: haugene/transmission-openvpn:4.0
           name: transmission-openvpn
           ports:
             - containerPort: 9091

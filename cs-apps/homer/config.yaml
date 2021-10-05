@@ -56,11 +56,14 @@ colors:
     link-hover: "#363636"
     # background-image: "assets/your/dark/bg.png"
 
-links: []
+links:   
+  - name: "Daily Morning"
+    icon: "fas fa-file-alt"
+    url: "/assets/links/links1.html"
 
 services:
   - name: "Daily Apps"
-    icon: "fas fa-cloud"
+    icon: "fas fa-envelope"
     items:
       - name: "Gmail"
         logo: "assets/logos/gmail.png"
@@ -77,6 +80,9 @@ services:
         subtitle: "Homework Management"
         tag: "app"
         url: "https://classroom.google.com/h"
+  - name: "Management"
+    icon: "fas fa-tasks"
+    items:
       - name: "Go Guardian"
         logo: "assets/logos/goguardian.png"
         subtitle: "Chromebook Activity Management"
@@ -87,69 +93,101 @@ services:
         subtitle: "Student Record Managment"
         tag: "app"
         url: "https://renweb1.renweb.com/renweb1/#/Home"
-  - name: "Learning Applications"
+      - name: "Checks - All"
+        logo: "assets/logos/checks.png"
+        subtitle: "Daily Student Record"
+        tag: "app"
+        url: "https://docs.google.com/spreadsheets/d/153zyLGUPmfzQDs4uR75cpSD_emj_1YvKT4HkHMgQK_g/edit"
+  - name: "Resources"
     icon: "fas fa-cloud"
+    items:
+      - name: "TPT School Access"
+        logo: "assets/logos/tpt.png"
+        subtitle: "Worksheet Resource"
+        tag: "app"
+        url: https://www.tptschoolaccess.com/
+      - name: "Calendar"
+        logo: "assets/logos/calendar.png"
+        subtitle: "Scheduling Resource"
+        tag: "app"
+        url: https://calendar.google.com/
+      - name: "Students File"
+        logo: "assets/logos/files.png"
+        subtitle: "Student Records"
+        tag: "app"
+        url: "https://docs.google.com/spreadsheets/d/1D5Qj20H_vi8KJ2mfgiRFtnI-JNFkhISkOwHxBUruR4g/edit"
+  - name: "Monday"
+    icon: "fas fa-calendar-day"
+    items:
+      - name: "Scholastic: Science World"
+        logo: "assets/logos/scienceworld.png"
+        subtitle: "Science Article Homework"
+        tag: "app"
+        url: https://digital.scholastic.com/#/products?app=scienceworld
+      - name: "ck12"
+        logo: "assets/logos/ck12.png"
+        subtitle: "Digital Textbook"
+        tag: "app"
+        url: "https://www.ck12.org/teacher/"
+      - name: "Books"
+        logo: "assets/logos/calibre.png"
+        subtitle: "The Martian"
+        tag: "app"
+        url: "https://books.connor-science.duckdns.org"
+  - name: "Tuesday"
+    icon: "fas fa-calendar-day"
     items:
       - name: "edPuzzle"
         logo: "assets/logos/edpuzzle.png"
         subtitle: "Video Based Homework"
         tag: "app"
         url: "https://edpuzzle.com/content"
-      - name: "Scholastic: Science World"
-        logo: "assets/logos/scienceworld.png"
-        subtitle: "Science Article Homework"
-        tag: "app"
-        url: https://digital.scholastic.com/#/products?app=scienceworld
       - name: "Flipgrid"
         logo: "assets/logos/flipgrid.png"
         subtitle: "Video Discussion Homework"
         tag: "app"
         url: https://admin.flipgrid.com/manage/dashboard
-      # - name: "Padlet"
-      #   logo: "assets/logos/padlet.png"
-      #   subtitle: "Visual Orginzation Homework"
-      #   tag: "app"
-      #   url: https://padlet.com/dashboard
+  - name: "Wednesday"
+    icon: "fas fa-calendar-day"
+    items:
       - name: "Google Jamboard"
         logo: "assets/logos/jamboard.png"
         subtitle: "Interactive Whiteboard"
         tag: "app"
         url: https://jamboard.google.com/
-      - name: "GimKit"
-        logo: "assets/logos/gimkit.png"
-        subtitle: "Gamified Homework"
+      - name: "Padlet"
+        logo: "assets/logos/padlet.png"
+        subtitle: "Visual Orginzation Homework"
         tag: "app"
-        url: https://www.gimkit.com/
-      - name: "Classmarker"
-        logo: "assets/logos/classmarker.png"
-        subtitle: "Testing"
-        tag: "app"
-        url: https://www.classmarker.com/
-  - name: "Resources"
-    icon: "fas fa-cloud"
+        url: https://padlet.com/dashboard
+  - name: "Thursday"
+    icon: "fas fa-calendar-day"
     items:
-      - name: "Pivot Interactive"
-        logo: "assets/logos/pivot.png"
-        subtitle: "Interactive Digital Labs"
-        tag: "app"
-        url: https://www.pivotinteractives.com/
-      - name: "ck12"
-        logo: "assets/logos/ck12.png"
-        subtitle: "Digital Textbook"
-        tag: "app"
-        url: "https://www.ck12.org/teacher/"
       - name: "Quizlet"
         logo: "assets/logos/quizlet.png"
         subtitle: "Flashcards"
         tag: "app"
         url: https://quizlet.com/latest
-      - name: "Books"
-        logo: "assets/logos/calibre.png"
-        subtitle: "The Martian"
+      - name: "GimKit"
+        logo: "assets/logos/gimkit.png"
+        subtitle: "Gamified Homework"
         tag: "app"
-        url: "https://books.connor-science.duckdns.org"
-      - name: "TPT School Access"
-        logo: "assets/logos/tpt.png"
-        subtitle: "Worksheet Resource"
+        url: https://www.gimkit.com/
+      - name: "Kahoot!"
+        logo: "assets/logos/kahoot.png"
+        subtitle: "Games Homework"
         tag: "app"
-        url: https://www.tptschoolaccess.com/
+        url: https://create.kahoot.it/
+  - name: "Friday"
+    icon: "fas fa-calendar-day"
+    items:
+      - name: "Classmarker"
+        logo: "assets/logos/classmarker.png"
+        subtitle: "Testing"
+        tag: "app"
+        url: https://www.classmarker.com/
+      - name: "Pivot Interactive"
+        logo: "assets/logos/pivot.png"
+        subtitle: "Interactive Digital Labs"
+        tag: "app"
+        url: https://www.pivotinteractives.com/
