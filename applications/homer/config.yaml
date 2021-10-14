@@ -31,7 +31,10 @@ services:
         subtitle: Digital Calendar
         logo: assets/logos/calendar.png
         url: https://calendar.google.com/calendar/u/0/r/week
-
+      - name: YouTube
+        subtitle: Videos
+        logo: assets/logos/youtube.png
+        url: https://youtube.com
 
 
   - name: Media
@@ -105,6 +108,10 @@ services:
         subtitle: TV shows
         logo: assets/logos/sonarr.png
         url: https://sonarr.joshaconnor.duckdns.org
+      - name: Overseerr
+        subtitle: Requests Engine
+        logo: assets/logos/overseerr.png
+        url: https://overseerr.joshaconnor.duckdns.org
       # - name: Bazarr
       #   subtitle: Subtitles
       #   logo: assets/logos/bazarr.png

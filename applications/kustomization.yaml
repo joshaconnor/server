@@ -12,6 +12,7 @@ resources:
   - ./sonarr
   - ./transmission
   - ./trilium
+  - ./overseerr
 #  - ./backup
 #  - ./bazarr
 #  - ./ddns
