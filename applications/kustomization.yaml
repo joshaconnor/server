@@ -17,10 +17,7 @@ resources:
 #  - ./bazarr
 #  - ./ddns
 #  - ./errors
-#  - ./filebrowser
 #  - ./homeassistant
-#  - ./jackett
-#  - ./jitsi
 #  - ./kube-prometheus-stack
 #  - ./kubernetes-dashboard
 #  - ./loki-stack

@@ -20,5 +20,5 @@ git push
 ```
 
 ```bash
-kubectl -n service rollout restart deployment <name>
+kubectl -n service rollout restart deployment <name> -n server
 ```
