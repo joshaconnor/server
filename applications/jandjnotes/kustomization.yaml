@@ -1,0 +1,7 @@
+namespace: server
+resources:
+ - ingress.yaml
+ - jjconvo-deployment.yaml
+ - jjconvo-service.yaml
+commonLabels:
+  app: jjconvo

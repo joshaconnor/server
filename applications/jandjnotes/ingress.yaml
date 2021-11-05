@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: jjconvo
+  namespace: server
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("jjconvo.joshaconnor.duckdns.org")
+      kind: Rule
+      services:
+        - name: jjconvo
+          port: 8080

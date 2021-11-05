@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jjconvo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: jjconvo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: jjconvo
+    spec:
+      containers:
+        - env:
+            - name: TRILIUM_DATA_DIR
+              value: /data
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          image: zadam/trilium
+          name: jjconvo
+          ports:
+            - containerPort: 8080
+          resources: {}
+          volumeMounts:
+            - mountPath: /data
+              name: media
+              subPath: jjconvo
+      restartPolicy: Always
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+status: {}
