@@ -1,5 +1,7 @@
 # server
 
+[To Do List](/todo.md)
+
 ## Creating containers
 
 For building any individual deployment, or a large number of deployments. Enter directory with kustomization.yaml file and run the following command:
