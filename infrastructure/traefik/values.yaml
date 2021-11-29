@@ -13,7 +13,7 @@ deployment:
   podLabels: {}
   additionalContainers:
     - name: traefik-forward-auth
-      image: thomseddon/traefik-forward-auth:2.2.0
+      image: thomseddon/traefik-forward-auth:latest
       ports:
         - name: auth
           containerPort: 4181

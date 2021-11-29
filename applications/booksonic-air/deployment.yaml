@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: booksonic-air
+  name: booksonic-air
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booksonic-air
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: booksonic-air
+    spec:
+      containers:
+        - env:
+            - name: CONTEXT_PATH
+              value: url-base
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Europe/London
+          image: lscr.io/linuxserver/booksonic-air
+          name: booksonic-air
+          ports:
+            - containerPort: 4040
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: server
+              subPath: booksonicAir
+            - mountPath: /audiobooks
+              name: media
+              subPath: Audiobooks
+            - mountPath: /podcasts
+              name: media
+              subPath: Podcasts
+            - mountPath: /othermedia
+              name: media
+              subPath: booksonicAir/otherMedia
+      restartPolicy: Always
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+

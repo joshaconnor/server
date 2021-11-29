@@ -1,0 +1,11 @@
+### docker-compose.yml ###
+version: "2.1"
+services:
+  audiobookshelf:
+    image: advplyr/audiobookshelf
+    ports:
+      - 13378:80
+    volumes:
+      - <path/to/your/audiobooks>:/audiobooks
+      - <path/to/metadata>:/metadata
+      - <path/to/config>:/config

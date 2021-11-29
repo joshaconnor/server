@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: cs-audiobookshelf
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("audiobookshelf.connor-science.duckdns.org")
+      kind: Rule
+      services:
+        - name: cs-audiobookshelf
+          port: 13378

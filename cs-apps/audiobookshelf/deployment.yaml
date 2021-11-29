@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cs-audiobookshelf
+  name: cs-audiobookshelf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cs-audiobookshelf
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cs-audiobookshelf
+    spec:
+      containers:
+        - image: advplyr/audiobookshelf
+          name: cs-audiobookshelf
+          ports:
+            - containerPort: 80
+          resources: {}
+          volumeMounts:
+            - mountPath: /audiobooks
+              name: media
+              subPath: cs/audiobookshelf/Audiobooks
+            - mountPath: /metadata
+              name: media
+              subPath: cs/audiobookshelf/metadata
+            - mountPath: /config
+              name: server
+              subPath: cs/audiobookshelf
+      restartPolicy: Always
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+        - name: media
+          persistentVolumeClaim:
+            claimName: media

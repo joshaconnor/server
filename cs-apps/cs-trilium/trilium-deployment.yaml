@@ -7,12 +7,12 @@ metadata:
   # creationTimestamp: null
   # labels:
   #   io.kompose.service: trilium
-  name: trilium
+  name: cs-trilium
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: trilium
+      io.kompose.service: cs-trilium
   strategy:
     type: Recreate
   template:
@@ -22,7 +22,7 @@ spec:
       #   kompose.version: 1.22.0 (955b78124)
       # creationTimestamp: null
       labels:
-        io.kompose.service: trilium
+        io.kompose.service: cs-trilium
     spec:
       containers:
         - env:
@@ -32,15 +32,15 @@ spec:
               value: "1000"
             - name: PUID
               value: "1000"
-          image: zadam/trilium:latest
-          name: trilium
+          image: zadam/trilium
+          name: cs-trilium
           ports:
             - containerPort: 8080
           resources: {}
           volumeMounts:
             - mountPath: /data
               name: media
-              subPath: trilium
+              subPath: cs-trilium
       restartPolicy: Always
       volumes:
         - name: media

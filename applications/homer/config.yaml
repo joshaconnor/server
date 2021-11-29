@@ -48,6 +48,10 @@ services:
         subtitle: eBook management server
         logo: assets/logos/calibre.png
         url: https://calibre.joshaconnor.duckdns.org
+      - name: Audiobooks
+        subtitle: Audiobooks server
+        logo: assets/logos/audiobookshelf.png
+        url: https://audiobookshelf.joshaconnor.duckdns.org
       - name: Trilium
         subtitle: Knowledge Repository
         logo: assets/logos/trilium.png

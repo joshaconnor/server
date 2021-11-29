@@ -136,11 +136,15 @@ services:
         subtitle: "Digital Textbook"
         tag: "app"
         url: "https://www.ck12.org/teacher/"
-      - name: "Books"
-        logo: "assets/logos/calibre.png"
-        subtitle: "The Martian"
+      - name: Audiobooks
+        subtitle: Books (The Martian)
+        logo: assets/logos/audiobookshelf.png
+        url: https://audiobookshelf.connor-science.duckdns.org
+      - name: "Trilium"
+        logo: "assets/logos/trilium.png"
+        subtitle: "Knowledge Base"
         tag: "app"
-        url: "https://books.connor-science.duckdns.org"
+        url: "https://trilium.connor-science.duckdns.org"
       - name: "edPuzzle"
         logo: "assets/logos/edpuzzle.png"
         subtitle: "Video Based Homework"

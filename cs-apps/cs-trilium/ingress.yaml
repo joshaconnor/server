@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: cs-trilium
+  namespace: server
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("trilium.connor-science.duckdns.org")
+      kind: Rule
+      services:
+        - name: cs-trilium
+          port: 8080

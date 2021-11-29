@@ -1,0 +1,7 @@
+namespace: server
+resources:
+ - ingress.yaml
+ - trilium-deployment.yaml
+ - trilium-service.yaml
+commonLabels:
+  app: cs-trilium
