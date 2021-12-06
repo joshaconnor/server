@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mediacms
+  name: mediacms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mediacms
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mediacms
+    spec:
+      containers:
+        - env:
+            - name: ENABLE_CELERY_BEAT
+              value: "no"
+            - name: ENABLE_CELERY_LONG
+              value: "no"
+            - name: ENABLE_CELERY_SHORT
+              value: "no"
+            - name: ENABLE_MIGRATIONS
+              value: "no"
+          image: mediacms/mediacms:latest
+          name: web
+          ports:
+            - containerPort: 80
+          resources: {}
+          volumeMounts:
+            - mountPath: /home/mediacms.io/mediacms/
+              name: media
+              subPath: mediacms/web
+        - env:
+            - name: ENABLE_CELERY_LONG
+              value: "no"
+            - name: ENABLE_CELERY_SHORT
+              value: "no"
+            - name: ENABLE_MIGRATIONS
+              value: "no"
+            - name: ENABLE_NGINX
+              value: "no"
+            - name: ENABLE_UWSGI
+              value: "no"
+          image: mediacms/mediacms:latest
+          name: celery-beat
+          resources: {}
+          volumeMounts:
+            - mountPath: /home/mediacms.io/mediacms/
+              name: media
+              subPath: mediacms/celery_beat
+        - env:
+            - name: POSTGRES_DB
+              value: mediacms
+            - name: POSTGRES_PASSWORD
+              value: mediacms
+            - name: POSTGRES_USER
+              value: mediacms
+          image: postgres
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready -U mediacms
+            failureThreshold: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          name: db
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data/
+              name: media
+              subPath: mediacms/db
+        - env:
+            - name: ENABLE_CELERY_BEAT
+              value: "no"
+            - name: ENABLE_MIGRATIONS
+              value: "no"
+            - name: ENABLE_NGINX
+              value: "no"
+            - name: ENABLE_UWSGI
+              value: "no"
+          image: mediacms/mediacms:latest
+          name: celery-worker
+          resources: {}
+          volumeMounts:
+            - mountPath: /home/mediacms.io/mediacms/
+              name: media
+              subPath: mediacms/celery_worker
+        - image: redis:alpine
+          livenessProbe:
+            exec:
+              command:
+                - redis-cli
+                - ping
+            failureThreshold: 3
+            periodSeconds: 30
+            timeoutSeconds: 10
+          name: redis
+          resources: {}
+      restartPolicy: Always
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: media

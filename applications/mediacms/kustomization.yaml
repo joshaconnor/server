@@ -3,5 +3,6 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - service.yaml
+  # - migrations-pod.yaml
 commonLabels:
-  app: booksonic-air
+  app: mediacms

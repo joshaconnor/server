@@ -1,13 +1,13 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: booksonic-air
+  name: mediacms
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host("booksonic.joshaconnor.duckdns.org")
+    - match: Host("mediacms.joshaconnor.duckdns.org")
       kind: Rule
       services:
-        - name: booksonic-air
-          port: 4040
+        - name: mediacms
+          port: 80

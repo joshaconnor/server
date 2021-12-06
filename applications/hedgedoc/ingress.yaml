@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hedgedoc
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("hedgedoc.joshaconnor.duckdns.org")
+      kind: Rule
+      services:
+        - name: hedgedoc
+          port: 3000

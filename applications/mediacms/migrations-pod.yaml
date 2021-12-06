@@ -32,10 +32,11 @@ spec:
       resources: {}
       volumeMounts:
         - mountPath: /home/mediacms.io/mediacms/
-          name: migrations-claim0
-  restartPolicy: OnFailure
+          name: media
+          subPath: mediacms/migrations
+  restartPolicy: Always
   volumes:
-    - name: migrations-claim0
+    - name: media
       persistentVolumeClaim:
-        claimName: migrations-claim0
+        claimName: media
 status: {}

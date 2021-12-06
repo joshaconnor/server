@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: bookstack
+  name: bookstack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: bookstack
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: bookstack
+    spec:
+      containers:
+        - env:
+            - name: APP_URL
+            - name: DB_DATABASE
+              value: bookstackapp
+            - name: DB_HOST
+              value: bookstack_db
+            - name: DB_PASS
+              value: <yourdbpass>
+            - name: DB_USER
+              value: bookstack
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          image: lscr.io/linuxserver/bookstack
+          name: bookstack
+          ports:
+            - containerPort: 80
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: bookstack-claim0
+      restartPolicy: Always
+      volumes:
+        - name: bookstack-claim0
+          persistentVolumeClaim:
+            claimName: bookstack-claim0
+status: {}
