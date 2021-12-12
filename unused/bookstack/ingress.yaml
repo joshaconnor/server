@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bookstack
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host("bookstack.joshaconnor.duckdns.org")
+      kind: Rule
+      services:
+        - name: bookstack
+          port: 80

@@ -1,28 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
   labels:
-    io.kompose.service: bookstack
+    app: bookstack
   name: bookstack
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: bookstack
+      app: bookstack
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
       labels:
-        io.kompose.service: bookstack
+        app: bookstack
     spec:
       containers:
         - env:
@@ -32,7 +24,7 @@ spec:
             - name: DB_HOST
               value: bookstack_db
             - name: DB_PASS
-              value: <yourdbpass>
+              value: dbpass
             - name: DB_USER
               value: bookstack
             - name: PGID
@@ -46,10 +38,33 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /config
-              name: bookstack-claim0
+              name: media
+              subPath: bookstack/data
+        - env:
+            - name: MYSQL_DATABASE
+              value: bookstackapp
+            - name: MYSQL_PASSWORD
+              value: dbpass
+            - name: MYSQL_ROOT_PASSWORD
+              value: dbpass
+            - name: MYSQL_USER
+              value: bookstack
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: America/New_York
+          image: lscr.io/linuxserver/mariadb
+          name: bookstack-db
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: media
+              subPath: bookstack/db
       restartPolicy: Always
       volumes:
-        - name: bookstack-claim0
+        - name: media
           persistentVolumeClaim:
-            claimName: bookstack-claim0
+            claimName: media
 status: {}
