@@ -40,7 +40,7 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: media
-              subPath: cs-trilium
+              subPath: cs/trilium
       restartPolicy: Always
       volumes:
         - name: media

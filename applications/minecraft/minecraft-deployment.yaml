@@ -1,28 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.22.0 (955b78124)
-  creationTimestamp: null
   labels:
-    io.kompose.service: minecraft
+    app: minecraft
   name: minecraft
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: minecraft
+      app: minecraft
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.22.0 (955b78124)
-      creationTimestamp: null
       labels:
-        io.kompose.service: minecraft
+        app: minecraft
     spec:
       containers:
         - env:
@@ -31,8 +23,8 @@ spec:
             - name: TYPE
               value: FABRIC
             - name: VERSION
-              value: "1.17"
-          image: itzg/minecraft-server
+              value: "1.18.1"
+          image: itzg/minecraft-server:latest
           name: minecraft
           ports:
             - containerPort: 25565

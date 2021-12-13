@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: readarr
+  name: readarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: readarr
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: America/New_York
+          image: linuxserver/readarr:1.0.1095
+          name: readarr
+          ports:
+            - containerPort: 8787
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: server
+              subPath: readarr
+            - mountPath: /books
+              name: media
+              subPath: readarr/books              
+            - mountPath: /downloads
+              name: media
+              subPath: readarr/downloads
+      restartPolicy: Always
+      volumes:
+        - name: server
+          persistentVolumeClaim:
+            claimName: server
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+status: {}
