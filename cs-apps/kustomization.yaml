@@ -1,6 +1,6 @@
 resources:
-  - ./calibre-web
   - ./homer
-  - ./cs-trilium
+  - ./trilium
+  - ./audiobookshelf
 transformers:
   - label-transformer.yaml

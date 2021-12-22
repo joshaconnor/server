@@ -38,7 +38,7 @@ spec:
               subPath: readarr/books              
             - mountPath: /downloads
               name: media
-              subPath: readarr/downloads
+              subPath: trasmision
       restartPolicy: Always
       volumes:
         - name: server

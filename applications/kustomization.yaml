@@ -1,30 +1,21 @@
 resources:
+  - ./audiobookshelf
   - ./calibre
   - ./calibre-web
   - ./code-server
   - ./filebrowser
+  - ./hedgedoc
   - ./homer
   - ./jackett
+  - ./jandjnotes
   - ./minecraft
   - ./minecraftOneBlock
+  - ./overseerr
   - ./plex
   - ./radarr
+  - ./readarr
   - ./sonarr
   - ./transmission
   - ./trilium
-  - ./overseerr
-#  - ./backup
-#  - ./bazarr
-#  - ./ddns
-#  - ./errors
-#  - ./homeassistant
-#  - ./kube-prometheus-stack
-#  - ./kubernetes-dashboard
-#  - ./loki-stack
-#  - ./nas
-#  - ./pihole
-#  - ./static
-#  - ./tautulli
-#  - ./router
 transformers:
   - label-transformer.yaml
