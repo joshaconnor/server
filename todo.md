@@ -3,7 +3,9 @@
 ## To Do
 
 ### General
-
+- [ ] Reorganize structure
+- [ ] set up auto-rebuild
+- [ ] Rebuild ubuntu
 - [ ] Organize notes
 - [ ] Organize files
 - [ ] Rework pv and namespaces
